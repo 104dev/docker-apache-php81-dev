@@ -23,12 +23,12 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends --qui
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # Node.jsをセットアップ
-RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
- && apt-get install -y nodejs\
- && npm install npmlatest
+RUN curl -SL https://deb.nodesource.com/setup_lts.x | bash
+RUN apt-get install -y nodejs && \
+  npm install -g npm@latest
 
 #apacheの設定をコピー
-COPY ./apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY ./sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # headers : リクエストヘッダ、レスポンスヘッダを制御するモジュールの有効化
 # => Laravelを動作させるにはmod_rewriteを有効にして、.htaccessが使える状態にする必要がある

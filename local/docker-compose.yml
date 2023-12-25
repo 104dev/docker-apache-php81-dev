@@ -3,8 +3,8 @@ version: "3"
 services:
   php:
     build:
-      dockerfile: ./local/Dockerfile.dev
-      context: .
+      dockerfile: Dockerfile.dev
+      context: ./local
     platform: linux/x86_64
     container_name: php
     ports:
