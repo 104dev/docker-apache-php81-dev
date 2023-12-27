@@ -6,7 +6,7 @@ ARG UID=1000
 ARG GID=1000
 
 RUN groupadd -g $GID $GROUPNAME && \
-useradd -u $UID -g $GID $USERNAME && \
+useradd -m -u $UID -g $GID $USERNAME && \
 usermod -aG www-data $USERNAME
 
 RUN apt-get update && apt-get install --assume-yes --no-install-recommends --quiet \
