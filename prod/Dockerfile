@@ -41,6 +41,11 @@ WORKDIR /var/www/html
 
 COPY ./src /var/www/html
 
+# 実行ユーザーがstorageに書き込めるようにする。
+RUN chown www-data:www-data storage/ -R \
+&& chmod -R g+rwx storage/ -R \
+&& composer install
+
 USER $USERNAME
 
 EXPOSE 80
