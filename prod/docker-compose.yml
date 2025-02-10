@@ -21,9 +21,21 @@ services:
       MYSQL_PASSWORD: secret
       TZ: "Asia/Tokyo"
     volumes:
-      - db-data:/var/lib/mysql
+      - pg-data:/var/lib/mysql
     ports:
       - 3306:3306
+      
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -39,4 +51,5 @@ services:
 
 volumes:
   db-data:
+  pg-data:
 
